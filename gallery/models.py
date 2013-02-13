@@ -33,8 +33,10 @@ class Image(models.Model):
         """
         # TODO: complete this by browsing around Imgur for a bit and checking
         # what the URL patterns looks like
-        self.url = ""
-        self.thumbnail_url = ""
+        self.url = self.hash+self.ext
+        self.thumbnail_url = "http://i.imgur.com/"+self.url
+        return  self.thumbnail_url
+
 
     def cache_locally(self):
         "Fires the asynchronous task that will make a local copy of the image"

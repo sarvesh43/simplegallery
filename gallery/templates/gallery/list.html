@@ -3,7 +3,7 @@
 {% block title %}Gallery{% endblock %}
 
 {% block content %}
-    <h1>Images</h1>
+    <h1>Images 1</h1>
     <ul>
         {% for image in object_list %}
 		<li>{{ image.hash }} Author: <a href="{% url authors-detail pk=image.author.pk %}">{{image.author.name}}</a></li>

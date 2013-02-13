@@ -8,6 +8,10 @@ class GalleryView(ListView):
 class GalleryDetailView(DetailView):
     template_name = "gallery/detail.html"
     model = Image
+    
+class GalleryThumbnailView(ListView):
+    template_name = "gallery/thumbnail.html"
+    model = Image
 
 class GalleryByAuthorView(ListView):
     pass

@@ -6,6 +6,7 @@ import simplejson
 
 from authors.models import Author
 from gallery.models import Image
+import settings
 
 IMGUR_GALLERY_URL='http://imgur.com/gallery.json'
 
@@ -46,8 +47,13 @@ class Command(NoArgsCommand):
             # TODO: make sure all these methods are implemented correctly
             new.author = self.get_or_create_author(author_name)
             new.timestamp = self.parse_datetime(image_data['timestamp'])
-            new.build_urls()
+            new.build_urls(hash)
             new.save()
+            /* TO SAVE THE FILES IN DOWNLOADS FOLDER */
+           filename_charset = string.ascii_letters + string.digits
+           file_save_dir = MEDIA_ROOT
+           urllib.urlretrieve ("http://i.imgur.com/"+(new.hash),os.path.join(file_save_dir, (new.hash) + '.jpg'))
+            
         else:
             print "Image %(hash)s didn't have an author" % image_data
 
